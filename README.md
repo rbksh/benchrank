@@ -1,7 +1,7 @@
 # BenchRank
 
 **Low-Latency Trading Infrastructure Benchmarking Platform**
-*Developed: May 2026 – Jun 2026 | IICPC Summer Hackathon 2026*
+*Developed: May 2026 – Jun 2026 | IICPC Summer Trading Hackathon 2026, by Shesh Shiromani*
 
 BenchRank is a distributed benchmarking and hosting platform engineered strictly for evaluating high-performance trading infrastructure under extreme concurrent load. 
 

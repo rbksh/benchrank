@@ -1,24 +1,22 @@
 # BenchRank
 
-**Low-Latency Trading Infrastructure Benchmarking Platform**
-*Developed: May 2026 – Jun 2026 | IICPC Summer Trading Hackathon 2026, by Shesh Shiromani*
+**Low-Latency Trading Infrastructure and Benchmarking Platform**
+* Author: Shesh Shiromani*
 
 BenchRank is a distributed benchmarking and hosting platform engineered strictly for evaluating high-performance trading infrastructure under extreme concurrent load. 
 
 It was built to provide a fault-isolated arena where developers can deploy custom matching engines and exchange backends, subjecting them to massive, simulated market activity. The platform captures real-time latency distributions, throughput ceilings, execution correctness, and system resilience, streaming this telemetry to a dynamic leaderboard.
 
----
+## The Problem Statement: Why?
 
-## The Problem Statement
-
-Building a deterministic, high-throughput matching engine is difficult, but accurately measuring its performance is a harder systems engineering problem. 
+Building a high-throughput matching engine is difficult, but accurately measuring its performance is a harder systems engineering problem. 
 
 Standard load-testing tools like JMeter or Locust are designed for stateless HTTP APIs. They are fundamentally incapable of testing stateful, low-latency financial infrastructure for a few key reasons:
 1. **Coordinated Omission:** Traditional tools wait for a response before sending the next request. If the matching engine stalls, the load generator slows down, artificially hiding tail latencies. 
 2. **Domain Ignorance:** Financial systems require sequential correctness. A standard load generator cannot verify if a limit order was correctly matched against the book; it only checks if a 200 OK was returned.
 3. **Client-Side Bottlenecks:** To measure microsecond latency, the benchmarking tool itself cannot suffer from garbage collection pauses or thread-contention delays.
 
-## The Solution
+## The Solution: How?
 
 BenchRank acts as a black-box testing arena. Competitors submit their exchange backend, and the platform handles the rest. 
 
@@ -63,8 +61,6 @@ To counteract this, BenchRank uses a lightweight machine learning model—specif
 *   **Frontend (Next.js):** A React-based interface that subscribes to WebSocket streams, rendering high-frequency updates to the leaderboard and latency distribution histograms (using HDR histograms for accurate p99 representations).
 *   **Environment (Docker / Kubernetes):** Provides the mathematical fairness and isolation required for a competitive benchmarking platform.
 
----
-
 ## Local Environment Setup
 
 To run the BenchRank platform locally for testing your own infrastructure, you need Docker, Docker Compose, Make, and Go 1.21+ installed on your host machine.
@@ -75,3 +71,4 @@ Start the supporting infrastructure, including Kafka, TimescaleDB, and the web i
 git clone [https://github.com/rbksh/benchrank.git](https://github.com/rbksh/benchrank.git)
 cd benchrank
 docker-compose up -d --build
+```
